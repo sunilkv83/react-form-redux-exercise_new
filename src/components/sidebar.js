@@ -8,8 +8,6 @@ export default class Sidebar extends Component {
     }
     
     render() {
-        if (window.location.pathname === '/' || window.location.pathname === '' ) return null;
-        else
         return (
             <div id="wrapper text-left">
                 <ul className="sidebar navbar-nav">
