@@ -12,6 +12,7 @@ class ScreeningContainer extends React.Component {
         <div className="card-body md-2 text-justify">
           <MuiThemeProvider>
             <Screening></Screening>
+            <br></br>
             <ScreeningList></ScreeningList>
           </MuiThemeProvider>
         </div>
