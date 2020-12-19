@@ -1,9 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addScreening } from "../actions/action";
+import { makeStyles } from "@material-ui/core/styles";
 import TextField from "material-ui/TextField";
 import Select from "@material-ui/core/Select";
-
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -11,16 +10,24 @@ import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import FormGroup from "@material-ui/core/FormGroup";
 import Checkbox from "@material-ui/core/Checkbox";
+import { addScreening } from "../actions/action";
 
-const styles = (theme) => ({
-  group: {
-    width: "auto",
-    height: "auto",
+
+const selectWidth = 150;
+
+const useStyles = makeStyles(theme => ({
+  root: {
     display: "flex",
-    flexWrap: "nowrap",
-    flexDirection: "row",
+    flexWrap: "wrap"
   },
-});
+  formControl: {
+    margin: theme.spacing(1),
+    width: selectWidth
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2)
+  }
+}));
 
 class Screening extends React.Component {
   constructor(props) {
@@ -35,7 +42,6 @@ class Screening extends React.Component {
       difficultyBreathing: "",
     };
   }
-
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -47,34 +53,45 @@ class Screening extends React.Component {
     this.setState({ currentTemp: "", wakingTemp: "" });
   };
 
+  handleReset=()=>{
+    this.setState({
+      ...this.state,
+      currentTemp: '',
+      wakingTemp: '',
+      temparatureMethod:'',
+      temparatureUnit:''
+  })
+  }
   render() {
-    const { classes } = this.props;
+
+    //const { classes } = this.props;
+
     return (
       <div>
         <div>
           <TextField
             name="currentTemp"
             onChange={this.handleChange}
-            placeholder="Current Temparature"
+            placeholder="Current Temparature" value={this.state.currentTemp}
           />
         </div>
         <div>
           <TextField
             name="wakingTemp"
             onChange={this.handleChange}
-            placeholder="Waking Temparature"
+            placeholder="Waking Temparature" value={this.state.wakingTemp}
           />
         </div>
         <br></br>
 
         <div>
-          <FormControl component="fieldset">
+          <FormControl component="fieldset"  style={{width:260}}>
             <FormLabel component="legend">Temparature Unit</FormLabel>
             <RadioGroup
               aria-label="temparatureUnit"
               name="temparatureUnit"
               onChange={this.handleChange}
-              row={true}
+              row={true} value={this.state.temparatureUnit}
             >
               <FormControlLabel value="F" control={<Radio />} label="F" />
               <FormControlLabel value="C" control={<Radio />} label="C" />
@@ -84,9 +101,9 @@ class Screening extends React.Component {
         <br></br>
 
         <div>
-          <FormControl component="fieldset">
+          <FormControl component="fieldset" style={{width:260}}>
             <FormLabel component="legend">Temparature Method</FormLabel>
-            <Select name="temparatureMethod" onChange={this.handleChange}>
+            <Select name="temparatureMethod" onChange={this.handleChange} value={this.state.temparatureMethod}>
               <option value="Oral">Oral</option>
               <option value="Other">Other</option>
             </Select>
@@ -94,8 +111,8 @@ class Screening extends React.Component {
         </div>
         <br></br>
         <div>
-          <FormControl component="fieldset">
-            <FormLabel component="legend">SYMPTOPMS</FormLabel>
+          <FormControl component="fieldset"  style={{width:260}}>
+            <FormLabel component="legend">SYMPTOMS</FormLabel>
             <FormGroup>
               <FormControlLabel
                 control={
@@ -135,6 +152,13 @@ class Screening extends React.Component {
           onClick={this.handleAddTodo}
         >
           Add Screening
+        </button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button
+          className="btn btn-outline-primary text-justify"
+          onClick={this.handleReset}
+        >
+         Reset
         </button>
         <br></br>
       </div>
