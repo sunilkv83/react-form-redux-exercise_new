@@ -42,6 +42,9 @@ class Screening extends React.Component {
       wakingTemp: "",
       temparatureMethod: "",
       temparatureUnit: "",
+      fever: "",
+      sob: "",
+      difficultyBreathing: "",
     });
   };
   render() {
@@ -99,7 +102,7 @@ class Screening extends React.Component {
           </div>&nbsp;&nbsp;&nbsp;&nbsp;
           <div>
             <FormControl component="fieldset" style={{ width: 260 }}>
-              <FormLabel component="legend">SYMPTOMS</FormLabel>
+              <FormLabel component="legend">Symptoms</FormLabel>
             </FormControl>
 
               <FormGroup row>
