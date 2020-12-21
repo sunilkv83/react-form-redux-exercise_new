@@ -5,6 +5,8 @@ import Sidebar from "./components/sidebar";
 import Login from "./components/Login";
 import Screening from "./containers/Screening";
 
+import LocationContainer from "./containers/Location";
+
 export default function App() {
   return (
     <div className="App">
@@ -15,6 +17,8 @@ export default function App() {
           <Switch>
             <Route exact path="/" component={Login} />
             <Route path="/screening" component={Screening} />
+            <Route path="/mylocations" component={LocationContainer} />
+
           </Switch>
         </Router>
       </div>

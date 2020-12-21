@@ -18,7 +18,7 @@ export default class Sidebar extends Component {
                             <span>&nbsp;Screening</span></Link>
                     </li>
                     <li className="nav-item">
-                        <Link to={'/MyLocation'} className="nav-link"><i className="fas fa-fw fa-file-archive"></i>
+                        <Link to={'/mylocations'} className="nav-link"><i className="fas fa-fw fa-file-archive"></i>
                             <span>&nbsp;My Location</span></Link>
                     </li>
                     <li className="nav-item">

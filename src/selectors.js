@@ -1,7 +1,6 @@
+export const getTodosState = (store) => store.screening;
 
-export const getTodosState = store => store.screening;
-
-export const getTodoList = store =>
+export const getTodoList = (store) =>
   getTodosState(store) ? getTodosState(store).allIds : [];
 
 export const getTodoById = (store, id) =>
@@ -11,10 +10,33 @@ export const getTodoById = (store, id) =>
  * example of a slightly more complex selector
  * select from store combining information from multiple reducers
  */
-export const getTodos = store =>
-  getTodoList(store).map(id => getTodoById(store, id));
+export const getTodos = (store) =>
+  getTodoList(store).map((id) => getTodoById(store, id));
 
 export const getAllScreening = (store) => {
   const allTodos = getTodos(store);
   return allTodos;
-  }
+};
+
+//My Locations Selectors
+
+export const getAllLocationState = (store) => store.mylocation;
+export const getLocationList = (store) =>
+  getAllLocationState(store) ? getAllLocationState(store).allIds : [];
+
+export const getLocationById = (store, id) =>
+  getAllLocationState(store)
+    ? { ...getAllLocationState(store).byIds[id], id }
+    : {};
+
+/**
+ * example of a slightly more complex selector
+ * select from store combining information from multiple reducers
+ */
+export const getLocations = (store) =>
+  getLocationList(store).map((id) => getLocationById(store, id));
+
+export const getAllLocations = (store) => {
+  const allLocations = getLocations(store);
+  return allLocations;
+};
