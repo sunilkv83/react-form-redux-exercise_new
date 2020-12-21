@@ -52,14 +52,15 @@ class Screening extends React.Component {
       <div>
         <br></br>
         <div className="form-row">
-        <div>
-          <TextField
-            name="currentTemp"
-            onChange={this.handleChange}
-            placeholder="Current Temparature"
-            value={this.state.currentTemp}
-          />
-          </div> &nbsp;&nbsp;&nbsp;&nbsp;
+          <div>
+            <TextField
+              name="currentTemp"
+              onChange={this.handleChange}
+              placeholder="Current Temparature"
+              value={this.state.currentTemp}
+            />
+          </div>{" "}
+          &nbsp;&nbsp;&nbsp;&nbsp;
           <div>
             <TextField
               name="wakingTemp"
@@ -67,7 +68,8 @@ class Screening extends React.Component {
               placeholder="Waking Temparature"
               value={this.state.wakingTemp}
             />
-          </div>&nbsp;&nbsp;&nbsp;&nbsp;
+          </div>
+          &nbsp;&nbsp;&nbsp;&nbsp;
           <div>
             <FormControl component="fieldset" style={{ width: 260 }}>
               <FormLabel component="legend">Temparature Unit</FormLabel>
@@ -76,7 +78,8 @@ class Screening extends React.Component {
                 name="temparatureUnit"
                 onChange={this.handleChange}
                 row={true}
-                value={this.state.temparatureUnit} placeholder="Temparature Unit"
+                value={this.state.temparatureUnit}
+                placeholder="Temparature Unit"
               >
                 <FormControlLabel value="F" control={<Radio />} label="F" />
                 <FormControlLabel value="C" control={<Radio />} label="C" />
@@ -88,73 +91,76 @@ class Screening extends React.Component {
         <br></br>
         <div className="form-row">
           <div>
-          <FormControl component="fieldset" style={{ width: 260 }}>
-            <FormLabel component="legend">Temparature Method</FormLabel>
-            <Select
-              name="temparatureMethod"
-              onChange={this.handleChange}
-              value={this.state.temparatureMethod}
-            >
-              <option value="Oral">Oral</option>
-              <option value="Other">Other</option>
-            </Select>
-          </FormControl>
-          </div>&nbsp;&nbsp;&nbsp;&nbsp;
+            <FormControl component="fieldset" style={{ width: 260 }}>
+              <FormLabel component="legend">Temparature Method</FormLabel>
+              <Select
+                name="temparatureMethod"
+                onChange={this.handleChange}
+                value={this.state.temparatureMethod}
+              >
+                <option value="Oral">Oral</option>
+                <option value="Other">Other</option>
+              </Select>
+            </FormControl>
+          </div>
+          &nbsp;&nbsp;&nbsp;&nbsp;
           <div>
             <FormControl component="fieldset" style={{ width: 260 }}>
               <FormLabel component="legend">Symptoms</FormLabel>
             </FormControl>
 
-              <FormGroup row>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      onChange={this.handleChange}
-                      value="Fever"
-                      name="fever"
-                    />
-                  }
-                  label="Fever"
-                />
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      onChange={this.handleChange}
-                      value="SOB"
-                      name="sob"
-                    />
-                  }
-                  label="Shortness of Breath"
-                />
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      onChange={this.handleChange}
-                      value="Difficulty Breathing"
-                      name="difficultyBreathing"
-                    />
-                  }
-                  label="Difficulty Breathing"
-                />
-              </FormGroup>
+            <FormGroup row>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    onChange={this.handleChange}
+                    value="Fever"
+                    name="fever"
+                  />
+                }
+                label="Fever"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    onChange={this.handleChange}
+                    value="SOB"
+                    name="sob"
+                  />
+                }
+                label="Shortness of Breath"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    onChange={this.handleChange}
+                    value="Difficulty Breathing"
+                    name="difficultyBreathing"
+                  />
+                }
+                label="Difficulty Breathing"
+              />
+            </FormGroup>
           </div>
         </div>
         <br></br>
         <div className="form-row text-right">
-        <button
-          className="btn btn-outline-primary text-justify"
-          onClick={this.handleAddTodo}
-        >
-          Add Screening
-        </button>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <button
-          className="btn btn-outline-primary text-justify"
-          onClick={this.handleReset}
-        >
-          Reset
-        </button>
-        <br></br>
+          <div>
+            <button
+              className="btn btn-outline-primary text-justify"
+              onClick={this.handleAddTodo}
+            >
+              Add Screening
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <button
+              className="btn btn-outline-primary text-justify"
+              onClick={this.handleReset}
+            >
+              Reset
+            </button>
+            <br></br>
+          </div>
         </div>
       </div>
     );

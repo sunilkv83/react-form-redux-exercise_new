@@ -1,9 +1,9 @@
-import { ADD_TODO } from "./actionType";
+import { ADD_SCREENING } from "./actionType";
 
 let nextTodoId = 0;
 
 export const addScreening = content => ({
-  type: ADD_TODO,
+  type: ADD_SCREENING,
   payload: {
     id: ++nextTodoId,
     content

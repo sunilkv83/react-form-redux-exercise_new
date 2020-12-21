@@ -1,4 +1,4 @@
-import { ADD_TODO } from "../actions/actionType";
+import { ADD_SCREENING } from "../actions/actionType";
 
 const initialState = {
   allIds: [],
@@ -7,7 +7,7 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case ADD_TODO: {
+    case ADD_SCREENING: {
       const { id, content } = action.payload;
       return {
         ...state,
