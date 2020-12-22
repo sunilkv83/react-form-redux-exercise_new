@@ -17,8 +17,8 @@ class ScreeningContainer extends React.Component {
   //   // console.log(this.state.currentIndex));
   //   this.state.currentIndex = index;
   // };
-  handleCallback = (e) => {
-    this.setState({currentIndex: e})
+  handleCallback = (index) => {
+    this.setState({currentIndex: index})
       }
 
   render() {
