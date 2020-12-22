@@ -1,4 +1,5 @@
-import { ADD_SCREENING } from "../actions/actionType";
+/* eslint-disable import/no-anonymous-default-export */
+import { ADD_SCREENING, UPDATE_SCREENING } from "../actions/actionType";
 
 const initialState = {
   allIds: [],
@@ -15,7 +16,19 @@ export default function (state = initialState, action) {
         byIds: {
           ...state.byIds,
           [id]: {
-            content
+            content,
+          },
+        },
+      };
+    }
+    case UPDATE_SCREENING: {
+      const { id, content } = action.payload;
+      return {
+        ...state,
+        byIds: {
+          ...state.byIds,
+          [id]: {
+            content,
           },
         },
       };

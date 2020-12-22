@@ -9,21 +9,48 @@ import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import FormGroup from "@material-ui/core/FormGroup";
 import Checkbox from "@material-ui/core/Checkbox";
-import { addScreening } from "../actions/action";
-
+import { addScreening, updateScreening } from "../actions/action";
+import { bindActionCreators } from "redux";
 class Screening extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      currentTemp: "",
-      wakingTemp: "",
-      temparatureMethod: "",
-      temparatureUnit: "",
-      fever: "",
-      sob: "",
-      difficultyBreathing: "",
-    };
+    // this.state = {
+    //   currentTemp: "",
+    //   wakingTemp: "",
+    //   temparatureMethod: "",
+    //   temparatureUnit: "",
+    //   fever: "",
+    //   sob: "",
+    //   difficultyBreathing: "",
+    // };
   }
+  state = {
+    ...this.returnStateObject(),
+    currentIndex: -1
+  };
+  componentDidUpdate(prevProps) {
+    if (prevProps.currentIndex !== this.props.currentIndex || prevProps.list.length !== this.props.list.length) {
+        this.setState({ ...this.returnStateObject() })
+    }
+}
+
+  returnStateObject() {
+    if (this.props.currentIndex === -1){
+      return {
+        currentTemp: "",
+        wakingTemp: "",
+        temparatureMethod: "",
+        temparatureUnit: "",
+        fever: "",
+        sob: "",
+        difficultyBreathing: "",
+      };
+    }
+    else {
+    return this.props.list.byIds[this.props.currentIndex].content;
+    }
+  }
+
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -31,9 +58,19 @@ class Screening extends React.Component {
   };
 
   handleAddTodo = () => {
-    this.props.addScreening(this.state);
-    this.setState({ currentTemp: "", wakingTemp: "",temparatureMethod:"",temparatureUnit:"", fever: "" });
-  };
+    if (this.props.currentIndex === -1) {
+      this.props.addScreening(this.state);
+    } else {
+      this.props.updateScreening(this.state,this.props.currentIndex);
+    }
+    this.setState({
+      currentTemp: "",
+      wakingTemp: "",
+      temparatureMethod: "",
+      temparatureUnit: "",
+      fever: "",
+    });
+    };
 
   handleReset = () => {
     this.setState({
@@ -48,6 +85,11 @@ class Screening extends React.Component {
     });
   };
   render() {
+    var buttonLabel = "Add Screening";
+    if (this.props.currentIndex !== -1) {
+      buttonLabel = "Update Screening"
+    } 
+
     return (
       <div>
         <br></br>
@@ -96,7 +138,8 @@ class Screening extends React.Component {
               <Select
                 name="temparatureMethod"
                 onChange={this.handleChange}
-                value={this.state.temparatureMethod}
+              //  value={this.state.temparatureMethod}
+                defaultValue=""
               >
                 <option value="Oral">Oral</option>
                 <option value="Other">Other</option>
@@ -150,7 +193,7 @@ class Screening extends React.Component {
               className="btn btn-outline-primary text-justify"
               onClick={this.handleAddTodo}
             >
-              Add Screening
+            {buttonLabel}
             </button>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <button
@@ -166,5 +209,15 @@ class Screening extends React.Component {
     );
   }
 }
-
-export default connect(null, { addScreening })(Screening);
+const mapStateToProps = state => {
+  return {
+      list: state.screening
+  }
+}
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    addScreening,
+    updateScreening
+  }, dispatch)
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Screening);
