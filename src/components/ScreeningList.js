@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getAllScreening } from "../selectors";
+import { getAllScreening } from "./selectors/screeningSelectors";
+//import { bindActionCreators } from 'redux'
 
 const ScreeningList = ({ todos }) => (
 <div>
@@ -41,5 +42,9 @@ const mapStateToProps = state => {
   return { todos };
 
 };
+
+// const mapDispatchToProps = dispatch => ({
+//   actions: bindActionCreators(DELETE_SCREENING, dispatch)
+// })
 // export default TodoList;
 export default connect(mapStateToProps)(ScreeningList);

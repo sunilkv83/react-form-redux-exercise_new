@@ -15,8 +15,7 @@ export default function (state = initialState, action) {
         byIds: {
           ...state.byIds,
           [id]: {
-            content,
-            completed: false,
+            content
           },
         },
       };

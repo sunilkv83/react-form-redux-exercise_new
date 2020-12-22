@@ -32,7 +32,7 @@ class Screening extends React.Component {
 
   handleAddTodo = () => {
     this.props.addScreening(this.state);
-    this.setState({ currentTemp: "", wakingTemp: "" });
+    this.setState({ currentTemp: "", wakingTemp: "",temparatureMethod:"",temparatureUnit:"", fever: "" });
   };
 
   handleReset = () => {

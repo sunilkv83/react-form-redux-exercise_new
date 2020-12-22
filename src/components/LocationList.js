@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getAllLocations } from "../selectors";
+import { getAllLocations } from "../components/selectors/locationSelectors";
 
 const LocationList = ({ locations }) => (
   <div>

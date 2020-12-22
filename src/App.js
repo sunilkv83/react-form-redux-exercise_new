@@ -1,27 +1,46 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Header from "./components/Header";
-import Sidebar from "./components/sidebar";
+import { React, Component } from "react";
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import Login from "./components/Login";
-import Screening from "./containers/Screening";
+import { getLoggedInUser } from "./components/selectors/loginSelectors";
+import { connect } from "react-redux";
+import LoggedInContainer from "./containers/LoggedInContainer";
 
-import LocationContainer from "./containers/Location";
-
-export default function App() {
-  return (
-    <div className="App">
-      <div id="wrapper">
-        <Router>
-          <Header></Header>
-          <Sidebar></Sidebar>
-          <Switch>
-            <Route exact path="/" component={Login} />
-            <Route path="/screening" component={Screening} />
-            <Route path="/mylocations" component={LocationContainer} />
-
-          </Switch>
-        </Router>
-      </div>
-    </div>
-  );
+class App extends Component {
+  render() {
+    if (
+      typeof this.props.loggedInUser.content !== "undefined" &&
+      this.props.loggedInUser.content != null
+    ) {
+      return (
+        <div className="App">
+          <div id="wrapper">
+            <LoggedInContainer
+              user={this.props.loggedInUser.content}
+            ></LoggedInContainer>
+          </div>
+        </div>
+      );
+    } else {
+      <Redirect to="/" />;
+      return (
+        <div className="App">
+          <div id="wrapper">
+            <Router>
+              <Switch>
+                <Route exact path="/" component={Login} />
+              </Switch>
+            </Router>
+          </div>
+        </div>
+      );
+    }
+  }
 }
+
+// start of code change
+const mapStateToProps = (state) => {
+  const loggedInUser = getLoggedInUser(state);
+  return { loggedInUser };
+};
+
+export default connect(mapStateToProps)(App);

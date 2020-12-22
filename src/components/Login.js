@@ -1,11 +1,17 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { login } from "../actions/action";
 
-export default class Login extends Component {
-  state = {
-    redirect: false,
-    email: "",
-  };
+ class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      redirect: false,
+    };
+  }
+
   renderRedirect = () => {
     if (this.state.redirect) {
       return <Redirect to="/screening" />;
@@ -17,9 +23,7 @@ export default class Login extends Component {
     });
   };
   handleSubmit = (event) => {
-    localStorage.setItem("User", JSON.stringify(this.state.email));
-    // localStorage.setItem('User', JSON.stringify("Sunil"));
-
+    this.props.login(this.state.email);
     this.setState({ redirect: true });
   };
 
@@ -84,3 +88,5 @@ export default class Login extends Component {
     );
   }
 }
+
+export default connect(null, { login })(Login);
