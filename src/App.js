@@ -4,7 +4,7 @@ import Login from "./components/Login";
 import { getLoggedInUser } from "./components/selectors/loginSelectors";
 import { connect } from "react-redux";
 import LoggedInContainer from "./containers/LoggedInContainer";
-
+import Timer from "./components/Timer"
 class App extends Component {
   render() {
     if (
@@ -13,6 +13,7 @@ class App extends Component {
     ) {
       return (
         <div className="App">
+        
           <div id="wrapper">
             <LoggedInContainer
               user={this.props.loggedInUser.content}
