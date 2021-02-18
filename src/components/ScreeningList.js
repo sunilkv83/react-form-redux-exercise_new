@@ -5,7 +5,7 @@ import { getAllScreening } from "./selectors/screeningSelectors";
 
 class ScreeningList extends React.Component {
   render() {
-    this.props.parentCallback(-1);
+   this.props.parentCallback(-1);
     return (
       <div>
         <table className="table table-striped">

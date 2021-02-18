@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { ADD_SCREENING, UPDATE_SCREENING } from "../actions/actionType";
+import { ADD_SCREENING, UPDATE_SCREENING,UPDATE_SCREENINGS } from "../actions/actionType";
 
 const initialState = {
   allIds: [],
@@ -33,6 +33,22 @@ export default function (state = initialState, action) {
         },
       };
     }
+    case UPDATE_SCREENINGS:{
+        var screenings  = action.payload;
+        const newState = {
+            ...state,
+            byIds : {}, 
+            allIds : []
+        };
+        let i=0;
+
+        screenings.forEach(content => {
+          i++;
+          newState.byIds[i] = { content}
+          newState.allIds.push(i);
+        });
+        return newState;
+     }
     default:
       return state;
   }

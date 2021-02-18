@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useState, useEffect, useRef,useCallback } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "../components/Header";
 import Sidebar from "../components/sidebar";
 import Screening from "../containers/Screening";
 import Location from "../containers/Location";
 import Timer from "../components/Timer";
+import axios from "axios";
+
 const LoggedInContainer = (props) => {
+//   const [screening, setScreening] = useState(false);
+//   const apiRef = useRef();
+  
+//   useEffect(() => {
+//   function handleClick(){
+//   axios.get("https://localhost:44340/Screening").then((res) => {
+//     const screenings = res.data;
+//     setScreening(screenings);
+//   });
+//   }
+
+// },[]);
+
   return (
     <div>
       <Router>
@@ -24,7 +39,6 @@ const LoggedInContainer = (props) => {
                 <br></br>
                 <Timer></Timer>
               </div>
-
               <Switch>
                 <Route path="/screening" component={Screening} />
                 <Route path="/mylocations" component={Location} />
